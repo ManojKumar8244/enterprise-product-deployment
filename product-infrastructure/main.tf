@@ -70,15 +70,15 @@ module "eks" {
 
 #module "cloudwatch" {
 
-  #source = "./cloudwatch"
+#source = "./cloudwatch"
 
-  #project_name = var.project_name
+#project_name = var.project_name
 
-  #environment = var.environment
+#environment = var.environment
 
-  #cluster_name = var.cluster_name
+#cluster_name = var.cluster_name
 
-  #}
+#}
 
 ############################################################
 # Secrets Module

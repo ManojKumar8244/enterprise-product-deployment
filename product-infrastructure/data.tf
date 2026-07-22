@@ -1,9 +1,9 @@
 ############################################################
-# CloudWatch Outputs
+# data.tf
 ############################################################
 
-#output "log_group_name" {
+data "aws_availability_zones" "available" {
 
-# value = aws_cloudwatch_log_group.eks_logs.name
+  state = "available"
 
-# }
+}
