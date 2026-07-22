@@ -1,0 +1,19 @@
+############################################################
+# CloudWatch Log Group
+############################################################
+
+#resource "aws_cloudwatch_log_group" "eks_logs" {
+
+  #name = "/aws/eks/${var.cluster_name}/cluster"
+
+ # retention_in_days = 30
+
+  #tags = {
+
+  #  Name = "${var.project_name}-logs"
+
+   # Environment = var.environment
+
+  #  }
+
+ # }
