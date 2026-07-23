@@ -92,7 +92,7 @@ output "eks_node_group" {
 
 #output "cloudwatch_log_group" {
 
-  #value = module.cloudwatch.log_group_name
+#value = module.cloudwatch.log_group_name
 
 #}
 
@@ -104,6 +104,6 @@ output "database_secret_arn" {
 
 #output "external_secrets_role" {
 
-  #value = module.iam.external_secrets_role_arn
+#value = module.iam.external_secrets_role_arn
 
-  #}
+#}

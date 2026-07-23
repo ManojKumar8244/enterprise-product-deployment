@@ -62,6 +62,11 @@ module "eks" {
 
   node_group_role_arn = module.iam.node_group_role_arn
 
+  # Add these three lines
+  desired_size = var.desired_size
+  min_size     = var.min_size
+  max_size     = var.max_size
+
 }
 
 ############################################################
@@ -70,15 +75,15 @@ module "eks" {
 
 #module "cloudwatch" {
 
-  #source = "./cloudwatch"
+#source = "./cloudwatch"
 
-  #project_name = var.project_name
+#project_name = var.project_name
 
-  #environment = var.environment
+#environment = var.environment
 
-  #cluster_name = var.cluster_name
+#cluster_name = var.cluster_name
 
-  #}
+#}
 
 ############################################################
 # Secrets Module

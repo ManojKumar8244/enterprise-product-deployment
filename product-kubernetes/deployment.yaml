@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: analytics-platform
+  namespace: enterprise-devops
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: analytics-platform
+
+  template:
+    metadata:
+      labels:
+        app: analytics-platform
+
+    spec:
+      containers:
+        - name: analytics-platform
+
+          image: 705557196379.dkr.ecr.us-west-1.amazonaws.com/analytics-platform:v1
+
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 8081
+
+          envFrom:
+            - configMapRef:
+                name: analytics-config
+
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: username
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: password
+
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+
+            initialDelaySeconds: 15
+            periodSeconds: 5

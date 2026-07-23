@@ -1,0 +1,10 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.backup
+tfplan
+
+# Terraform lock file (keep if you want reproducible providers)
+# .terraform.lock.hclproduct-infrastructure/secrets.auto.tfvars
