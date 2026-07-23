@@ -62,6 +62,11 @@ module "eks" {
 
   node_group_role_arn = module.iam.node_group_role_arn
 
+  # Add these three lines
+  desired_size = var.desired_size
+  min_size     = var.min_size
+  max_size     = var.max_size
+
 }
 
 ############################################################
