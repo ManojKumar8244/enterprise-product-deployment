@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
 
     tools {
@@ -6,9 +7,46 @@ pipeline {
         maven 'Maven3'
     }
 
+    parameters {
+
+        choice(
+            name: 'ENVIRONMENT',
+            choices: [
+                'dev',
+                'stage',
+                'prod',
+                'customer-a',
+                'customer-b',
+                'customer-c',
+                'customer-d',
+                'customer-e',
+                'customer-f',
+                'customer-g'
+            ],
+            description: 'Select Deployment Environment'
+        )
+
+        string(
+            name: 'IMAGE_TAG',
+            defaultValue: 'v1',
+            description: 'Docker Image Tag'
+        )
+
+        string(
+            name: 'NAMESPACE',
+            defaultValue: 'enterprise-devops',
+            description: 'Kubernetes Namespace'
+        )
+
+        string(
+            name: 'REPLICAS',
+            defaultValue: '2',
+            description: 'Number of Application Replicas'
+        )
+    }
+
     environment {
         APP_NAME = "analytics-platform"
-        IMAGE_TAG = "v1"
     }
 
     stages {
@@ -30,7 +68,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 dir('analytics-platform') {
-                    sh 'docker build -t ${APP_NAME}:${IMAGE_TAG} .'
+                    sh """
+                    docker build -t ${APP_NAME}:${params.IMAGE_TAG} .
+                    """
                 }
             }
         }
@@ -41,17 +81,69 @@ pipeline {
             }
         }
 
+        stage('Deployment Details') {
+            steps {
+                echo "======================================"
+                echo "Environment : ${params.ENVIRONMENT}"
+                echo "Namespace   : ${params.NAMESPACE}"
+                echo "Image Tag   : ${params.IMAGE_TAG}"
+                echo "Replicas    : ${params.REPLICAS}"
+                echo "======================================"
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+
+            steps {
+
+                sh """
+                kubectl config set-context --current --namespace=${params.NAMESPACE}
+
+                kubectl apply -f ../product-kubernetes/configmap.yaml
+                kubectl apply -f ../product-kubernetes/secrets.yaml
+                kubectl apply -f ../product-kubernetes/deployment.yaml
+                kubectl apply -f ../product-kubernetes/service.yaml
+                kubectl apply -f ../product-kubernetes/ingress.yaml
+                """
+            }
+        }
+
+        stage('Verify Deployment') {
+
+            steps {
+
+                sh """
+                kubectl get pods -n ${params.NAMESPACE}
+                kubectl get svc -n ${params.NAMESPACE}
+                kubectl get deployment -n ${params.NAMESPACE}
+                """
+            }
+        }
     }
 
     post {
 
         success {
-            echo 'CI Pipeline Completed Successfully'
+
+            echo "======================================"
+            echo "Deployment Successful"
+            echo "Environment : ${params.ENVIRONMENT}"
+            echo "======================================"
+
         }
 
         failure {
-            echo 'Pipeline Failed'
+
+            echo "======================================"
+            echo "Deployment Failed"
+            echo "======================================"
+
         }
 
+        always {
+
+            cleanWs()
+
+        }
     }
 }
