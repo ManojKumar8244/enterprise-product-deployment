@@ -97,15 +97,15 @@ pipeline {
                     /usr/local/bin/kubectl create namespace ${params.NAMESPACE} \
                     --dry-run=client -o yaml | /usr/local/bin/kubectl apply -f -
 
-                    /usr/local/bin/kubectl apply -f ../product-kubernetes/configmap.yaml
+                    /usr/local/bin/kubectl apply -f product-kubernetes/configmap.yaml
 
-                    /usr/local/bin/kubectl apply -f ../product-kubernetes/secrets.yaml
+                    /usr/local/bin/kubectl apply -f product-kubernetes/secrets.yaml
 
-                    /usr/local/bin/kubectl apply -f ../product-kubernetes/deployment.yaml
+                    /usr/local/bin/kubectl apply -f product-kubernetes/deployment.yaml
 
-                    /usr/local/bin/kubectl apply -f ../product-kubernetes/service.yaml
+                    /usr/local/bin/kubectl apply -f product-kubernetes/service.yaml
 
-                    /usr/local/bin/kubectl apply -f ../product-kubernetes/ingress.yaml
+                    /usr/local/bin/kubectl apply -f product-kubernetes/ingress.yaml
 
                     /usr/local/bin/kubectl scale deployment analytics-platform \
                     --replicas=${params.REPLICAS} \
