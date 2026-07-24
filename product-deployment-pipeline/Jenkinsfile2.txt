@@ -1,0 +1,181 @@
+pipeline {
+
+    agent any
+
+    parameters {
+
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'stage', 'prod', 'customer-a', 'customer-b', 'customer-c', 'customer-d', 'customer-e', 'customer-f', 'customer-g'],
+            description: 'Deployment Environment'
+        )
+
+        string(
+            name: 'IMAGE_TAG',
+            defaultValue: 'v1',
+            description: 'Docker Image Tag'
+        )
+
+        string(
+            name: 'NAMESPACE',
+            defaultValue: 'enterprise-devops',
+            description: 'Kubernetes Namespace'
+        )
+
+        string(
+            name: 'REPLICAS',
+            defaultValue: '2',
+            description: 'Number of Replicas'
+        )
+
+        choice(
+            name: 'AWS_REGION',
+            choices: ['us-west-1'],
+            description: 'AWS Region'
+        )
+
+        string(
+            name: 'CLUSTER_NAME',
+            defaultValue: 'enterprise-eks-dev',
+            description: 'EKS Cluster Name'
+        )
+    }
+
+    environment {
+
+        AWS_ACCOUNT = "705557196379"
+        ECR_REPOSITORY = "analytics-platform"
+
+    }
+
+    stages {
+
+        stage('Show Parameters') {
+
+            steps {
+
+                echo "===================================="
+                echo "Environment : ${params.ENVIRONMENT}"
+                echo "Image Tag   : ${params.IMAGE_TAG}"
+                echo "Namespace   : ${params.NAMESPACE}"
+                echo "Replicas    : ${params.REPLICAS}"
+                echo "Cluster     : ${params.CLUSTER_NAME}"
+                echo "===================================="
+
+            }
+
+        }
+
+        stage('Configure kubectl') {
+
+            steps {
+
+                sh """
+                aws eks update-kubeconfig \
+                  --region ${params.AWS_REGION} \
+                  --name ${params.CLUSTER_NAME}
+                """
+
+            }
+
+        }
+
+        stage('Create Namespace') {
+
+            steps {
+
+                sh """
+                kubectl create namespace ${params.NAMESPACE} \
+                --dry-run=client -o yaml | kubectl apply -f -
+                """
+
+            }
+
+        }
+
+        stage('Deploy Application') {
+
+            steps {
+
+                sh """
+
+                kubectl apply -f ../product-kubernetes/configmap.yaml
+
+                kubectl apply -f ../product-kubernetes/secrets.yaml
+
+                kubectl apply -f ../product-kubernetes/deployment.yaml
+
+                kubectl apply -f ../product-kubernetes/service.yaml
+
+                kubectl apply -f ../product-kubernetes/ingress.yaml
+
+                """
+
+            }
+
+        }
+
+        stage('Scale Deployment') {
+
+            steps {
+
+                sh """
+
+                kubectl scale deployment analytics-platform \
+                --replicas=${params.REPLICAS} \
+                -n ${params.NAMESPACE}
+
+                """
+
+            }
+
+        }
+
+        stage('Verify Deployment') {
+
+            steps {
+
+                sh """
+
+                kubectl get pods -n ${params.NAMESPACE}
+
+                kubectl get svc -n ${params.NAMESPACE}
+
+                kubectl get deployment -n ${params.NAMESPACE}
+
+                """
+
+            }
+
+        }
+
+    }
+
+    post {
+
+        success {
+
+            echo "===================================="
+            echo "Deployment Successful"
+            echo "Environment : ${params.ENVIRONMENT}"
+            echo "===================================="
+
+        }
+
+        failure {
+
+            echo "===================================="
+            echo "Deployment Failed"
+            echo "===================================="
+
+        }
+
+        always {
+
+            cleanWs()
+
+        }
+
+    }
+
+}
