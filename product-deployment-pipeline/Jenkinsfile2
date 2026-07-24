@@ -6,7 +6,18 @@ pipeline {
 
         choice(
             name: 'ENVIRONMENT',
-            choices: ['dev', 'stage', 'prod', 'customer-a', 'customer-b', 'customer-c', 'customer-d', 'customer-e', 'customer-f', 'customer-g'],
+            choices: [
+                'dev',
+                'stage',
+                'prod',
+                'customer-a',
+                'customer-b',
+                'customer-c',
+                'customer-d',
+                'customer-e',
+                'customer-f',
+                'customer-g'
+            ],
             description: 'Deployment Environment'
         )
 
@@ -39,11 +50,12 @@ pipeline {
             defaultValue: 'enterprise-eks-dev',
             description: 'EKS Cluster Name'
         )
+
     }
 
     environment {
 
-        AWS_ACCOUNT = "705557196379"
+        AWS_ACCOUNT    = "705557196379"
         ECR_REPOSITORY = "analytics-platform"
 
     }
@@ -70,11 +82,20 @@ pipeline {
 
             steps {
 
-                sh """
-                aws eks update-kubeconfig \
-                  --region ${params.AWS_REGION} \
-                  --name ${params.CLUSTER_NAME}
-                """
+                withCredentials([
+                    [
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-creds'
+                    ]
+                ]) {
+
+                    sh """
+                    aws eks update-kubeconfig \
+                      --region ${params.AWS_REGION} \
+                      --name ${params.CLUSTER_NAME}
+                    """
+
+                }
 
             }
 
