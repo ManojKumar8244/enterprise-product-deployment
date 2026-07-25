@@ -1,0 +1,20 @@
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 250m
+    memory: 512Mi
+
+extraEnvs:
+  - name: NODE_OPTIONS
+    value: "--max-old-space-size=256"
+
+service:
+  type: LoadBalancer
+
+kibanaConfig:
+  kibana.yml: |
+    xpack.encryptedSavedObjects.encryptionKey: "2037cb2de4366ee4a4249c69ad5cfa95"
+    xpack.reporting.encryptionKey: "97d764b1183a5ae3827fc10008094886"
+    xpack.security.encryptionKey: "838275de265efea06bffc6f47d23ceea"

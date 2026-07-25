@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Enterprise Product Deployment Platform is Running Successfully!";
+        return "Enterprise Product Deployment Platform is Running Successfully!-->>Green Deployment<<--";
     }
 
     @GetMapping("/health")
