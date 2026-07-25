@@ -27,7 +27,7 @@ spec:
 
       - name: analytics-platform
 
-        image: 705557196379.dkr.ecr.us-west-1.amazonaws.com/analytics-platform:v1
+        image: 705557196379.dkr.ecr.us-west-1.amazonaws.com/analytics-platform:v2
 
         ports:
         - containerPort: 8080
