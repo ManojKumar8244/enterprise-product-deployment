@@ -1,0 +1,105 @@
+pipeline {
+    agent any
+
+    environment {
+
+        // AWS
+        AWS_REGION      = 'us-west-1'
+        AWS_ACCOUNT_ID  = '705557196379'
+        ECR_REPOSITORY  = 'analytics-platform'
+
+        // EKS
+        CLUSTER_NAME    = 'enterprise-eks-dev'
+        NAMESPACE       = 'enterprise-devops'
+        DEPLOYMENT_NAME = 'analytics-platform'
+        CONTAINER_NAME  = 'analytics-platform'
+
+        // Docker
+        IMAGE_TAG = "v${BUILD_NUMBER}"
+        IMAGE_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                dir('analytics-platform') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                dir('analytics-platform') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('analytics-platform') {
+                    sh """
+                    docker build \
+                    -t ${ECR_REPOSITORY}:${IMAGE_TAG} .
+                    """
+                }
+            }
+        }
+
+        stage('Login to Amazon ECR') {
+            steps {
+                sh """
+                aws ecr get-login-password \
+                --region ${AWS_REGION} | \
+                docker login \
+                --username AWS \
+                --password-stdin ${IMAGE_URI}
+                """
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh """
+                docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} ${IMAGE_URI}:${IMAGE_TAG}
+                docker push ${IMAGE_URI}:${IMAGE_TAG}
+                """
+            }
+        }
+      
+    }
+    post {
+
+        success {
+            echo "========================================="
+            echo "BUILD SUCCESSFUL"
+            echo "========================================="
+            echo "Docker Image : ${IMAGE_URI}:${IMAGE_TAG}"
+            echo "========================================="
+        }
+
+        failure {
+            echo "========================================="
+            echo "BUILD FAILED"
+            echo "========================================="
+        }
+
+        always {
+            sh """
+            docker image rm -f ${ECR_REPOSITORY}:${IMAGE_TAG} || true
+            docker image rm -f ${IMAGE_URI}:${IMAGE_TAG} || true
+            docker image prune -f || true
+            """
+
+            cleanWs()
+        }
+    }
+}
