@@ -263,3 +263,20 @@ Kibana Dashboard
 - Search & Filtering
 - Log Visualization
 - Dashboard Analytics
+
+---
+
+# Alert Configuration
+
+Kibana Alerting is configured to monitor application logs and notify when predefined conditions are met.
+
+### Alert Features
+
+- Log Threshold Alerts
+- Error Detection
+- Alert Rules
+- Real-time Monitoring
+- Alert History
+
+The alert configuration demonstrates automated monitoring of application events.
+
