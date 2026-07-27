@@ -227,3 +227,39 @@ The project uses Prometheus and Grafana for infrastructure and application monit
 - Resource Utilization Dashboard
 
 > Dashboard screenshots are available in the **Screenshots** folder.
+
+---
+
+# Centralized Logging
+
+The project implements centralized logging using the Elastic Stack.
+
+### Components
+
+- Elasticsearch
+- Kibana
+- Fluent Bit
+
+### Log Flow
+
+Application Logs
+
+↓
+
+Fluent Bit
+
+↓
+
+Elasticsearch
+
+↓
+
+Kibana Dashboard
+
+### Features
+
+- Centralized Log Collection
+- Kubernetes Log Monitoring
+- Search & Filtering
+- Log Visualization
+- Dashboard Analytics
