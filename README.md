@@ -302,3 +302,23 @@ Blue-Green deployment is implemented to achieve zero-downtime application releas
 - Easy Rollback
 - Reduced Risk
 
+---
+
+# Disaster Recovery
+
+The project demonstrates Disaster Recovery planning through:
+
+- Backup Verification
+- Rollback Demonstration
+- Infrastructure Recreation using Terraform
+- Kubernetes Self-Healing
+- Configuration Backup
+- Infrastructure as Code Recovery
+
+### Documentation
+
+- Backup Verification
+- RTO/RPO Documentation
+- Runbook
+- Trusted Advisor Findings
+
