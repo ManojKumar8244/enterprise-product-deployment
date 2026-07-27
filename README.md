@@ -94,3 +94,33 @@ enterprise-product-deployment/
 - Rollback Demonstration
 - Backup Verification
 - Disaster Recovery Documentation
+
+- ---
+
+# Solution Architecture
+
+The project follows a modern cloud-native DevOps architecture.
+
+## Workflow
+
+Developer
+↓
+GitHub Repository
+↓
+Jenkins CI/CD Pipeline
+↓
+SonarQube Quality Analysis
+↓
+Docker Image Build
+↓
+Amazon ECR
+↓
+Amazon EKS Cluster
+↓
+Kubernetes Deployment
+↓
+Prometheus + Grafana
+↓
+Elasticsearch + Fluent Bit + Kibana
+
+📌 The complete architecture diagram is available in the `Architecture` folder.
