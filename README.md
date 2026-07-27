@@ -379,3 +379,32 @@ The project demonstrates Disaster Recovery planning through:
 ![Blue Green Deployment](Screenshots/Screenshot%20of%20Bule%20and%20Green%20deployment.png)
 
 ![Patch Command](Screenshots/Screenshot%20of%20Blue%20green%20patch%20command%20and%20pods.png)
+
+---
+
+# Author
+
+**Name:** Nagamulla Manoj Kumar
+
+**Role:** DevOps Engineer
+
+## Skills
+
+- AWS
+- Terraform
+- Docker
+- Kubernetes
+- Jenkins
+- GitHub
+- SonarQube
+- Prometheus
+- Grafana
+- Elasticsearch
+- Kibana
+- Fluent Bit
+- CI/CD
+- Infrastructure as Code
+
+---
+
+If you found this project useful, please consider giving it a star.
