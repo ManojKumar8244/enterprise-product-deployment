@@ -23,3 +23,28 @@ The project demonstrates Infrastructure as Code (IaC), CI/CD automation, Kuberne
 - Configure alerting
 - Implement Blue-Green Deployment
 - Demonstrate rollback and disaster recovery
+
+---
+
+# Technology Stack
+
+| Category | Technology |
+|-----------|------------|
+| Cloud Platform | AWS |
+| Infrastructure as Code | Terraform |
+| Source Control | Git & GitHub |
+| Continuous Integration | Jenkins |
+| Build Tool | Maven |
+| Code Quality | SonarQube |
+| Containerization | Docker |
+| Container Registry | Amazon ECR |
+| Orchestration | Kubernetes (Amazon EKS) |
+| Secrets Management | AWS Secrets Manager |
+| External Secrets | External Secrets Operator |
+| Monitoring | Prometheus |
+| Visualization | Grafana |
+| Logging | Elasticsearch |
+| Log Analytics | Kibana |
+| Log Collection | Fluent Bit |
+| Deployment Strategy | Blue-Green Deployment |
+| Disaster Recovery | Rollback & Backup Strategy |
