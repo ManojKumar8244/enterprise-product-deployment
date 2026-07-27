@@ -280,3 +280,25 @@ Kibana Alerting is configured to monitor application logs and notify when predef
 
 The alert configuration demonstrates automated monitoring of application events.
 
+---
+
+# Blue-Green Deployment
+
+Blue-Green deployment is implemented to achieve zero-downtime application releases.
+
+### Deployment Process
+
+1. Deploy Blue Version
+2. Verify Application Health
+3. Deploy Green Version
+4. Switch Traffic
+5. Verify Production
+6. Rollback if Required
+
+### Benefits
+
+- Zero Downtime
+- Safe Deployment
+- Easy Rollback
+- Reduced Risk
+
