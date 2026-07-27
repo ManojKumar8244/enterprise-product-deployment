@@ -124,3 +124,31 @@ Prometheus + Grafana
 Elasticsearch + Fluent Bit + Kibana
 
 📌 The complete architecture diagram is available in the `Architecture` folder.
+
+---
+
+# ☁️ Infrastructure Provisioning (Terraform)
+
+Terraform is used to provision the complete AWS infrastructure.
+
+### Resources Created
+
+- Amazon VPC
+- Public & Private Subnets
+- Internet Gateway
+- NAT Gateway
+- Route Tables
+- IAM Roles & Policies
+- Amazon EKS Cluster
+- Managed Node Group
+- AWS Secrets Manager
+- CloudWatch Configuration
+
+### Terraform Commands
+
+```bash
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+```
