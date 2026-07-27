@@ -200,3 +200,30 @@ The application is deployed on Amazon EKS using Kubernetes manifests.
 - Readiness Probe
 - Liveness Probe
 - Rolling Updates
+
+---
+
+---
+
+# Monitoring
+
+The project uses Prometheus and Grafana for infrastructure and application monitoring.
+
+### Monitoring Features
+
+- Kubernetes Cluster Monitoring
+- Node Metrics
+- Pod Metrics
+- CPU Usage
+- Memory Usage
+- Network Monitoring
+- Storage Monitoring
+
+### Grafana Dashboards
+
+- Kubernetes Cluster Dashboard
+- Node Exporter Dashboard
+- Pod Monitoring Dashboard
+- Resource Utilization Dashboard
+
+> Dashboard screenshots are available in the **Screenshots** folder.
