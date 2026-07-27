@@ -342,7 +342,7 @@ The project demonstrates Disaster Recovery planning through:
 
 ## Terraform Deployment
 
-![Terraform Deployment](Screenshots/Screenshot%20of%20successful%20deployment%20of%20environments.png)
+![Terraform Deployment](Screenshots/Screenshot%20of%20successfull%20deployment%20of%20environments.png)
 
 ---
 
@@ -354,7 +354,7 @@ The project demonstrates Disaster Recovery planning through:
 
 ## Grafana Dashboard
 
-![Grafana Dashboard](Screenshots/Screenshot%20of%20Grafana%20Dashboard.png)
+![Grafana Dashboard](Screenshots/Screenshot%20of%20custom%20Grafana%20dashboard.png)
 
 ---
 
