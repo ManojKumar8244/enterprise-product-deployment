@@ -322,3 +322,60 @@ The project demonstrates Disaster Recovery planning through:
 - Runbook
 - Trusted Advisor Findings
 
+---
+
+# Project Screenshots
+
+## Jenkins Pipeline
+
+![Jenkins Stage View](Screenshots/Screenshot%20of%20Jenkins%20stage%20view.png)
+
+![Jenkins Console Output](Screenshots/Screenshot%20of%20Jenkins%20Console%20Output%20showing%20SonarQube%20analysis.png)
+
+---
+
+## SonarQube Quality Gate
+
+![SonarQube Dashboard](Screenshots/Screenshot%20of%20SonarQube%20Dashboard.png)
+
+---
+
+## Terraform Deployment
+
+![Terraform Deployment](Screenshots/Screenshot%20of%20successful%20deployment%20of%20environments.png)
+
+---
+
+## Kubernetes Deployment
+
+![Kubectl Pods](Screenshots/Screenshot%20of%20kubectl%20get%20pods%20output.png)
+
+---
+
+## Grafana Dashboard
+
+![Grafana Dashboard](Screenshots/Screenshot%20of%20Grafana%20Dashboard.png)
+
+---
+
+## Kibana Dashboard
+
+![Kibana Dashboard](Screenshots/Screenshot%20of%20main%20page%20of%20Kabana%20dashboard.png)
+
+![Logs by Namespace](Screenshots/Screenshot%20of%20logs%20by%20namespace%20kibana.png)
+
+![Logs by Containers](Screenshots/Screenshot%20of%20logs%20by%20containers%20kibana.png)
+
+---
+
+## Alert Configuration
+
+![Alert Configuration](Screenshots/Screenshot%20of%20alert%20configuration.png)
+
+---
+
+## Blue-Green Deployment
+
+![Blue Green Deployment](Screenshots/Screenshot%20of%20Bule%20and%20Green%20deployment.png)
+
+![Patch Command](Screenshots/Screenshot%20of%20Blue%20green%20patch%20command%20and%20pods.png)
