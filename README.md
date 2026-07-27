@@ -177,3 +177,26 @@ The CI/CD pipeline automates application delivery from source code to Kubernetes
 - Parameterized Builds
 - Continuous Integration
 - Continuous Delivery
+
+---
+
+# Kubernetes Deployment
+
+The application is deployed on Amazon EKS using Kubernetes manifests.
+
+### Kubernetes Resources
+
+- Namespace
+- Deployment
+- Service
+- Ingress
+- ConfigMap
+- Secret
+- External Secret
+
+### High Availability
+
+- Multiple replicas
+- Readiness Probe
+- Liveness Probe
+- Rolling Updates
