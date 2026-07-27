@@ -72,4 +72,25 @@ enterprise-product-deployment/
 ├── Trusted_Advisor_Findings.md
 └── README.md
 ```
+---
 
+# Features
+
+- Automated Infrastructure Provisioning using Terraform
+- AWS VPC, IAM and EKS Cluster Deployment
+- Docker Image Build & Amazon ECR Integration
+- Jenkins CI/CD Pipeline
+- SonarQube Quality Gate
+- Kubernetes Deployment Automation
+- ConfigMaps & Secrets
+- External Secrets Operator Integration
+- Prometheus Monitoring
+- Grafana Dashboards
+- Elasticsearch Logging
+- Kibana Visualization
+- Fluent Bit Log Collection
+- Alert Configuration
+- Blue-Green Deployment Strategy
+- Rollback Demonstration
+- Backup Verification
+- Disaster Recovery Documentation
