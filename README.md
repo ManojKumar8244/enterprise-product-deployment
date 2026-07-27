@@ -48,3 +48,28 @@ The project demonstrates Infrastructure as Code (IaC), CI/CD automation, Kuberne
 | Log Collection | Fluent Bit |
 | Deployment Strategy | Blue-Green Deployment |
 | Disaster Recovery | Rollback & Backup Strategy |
+
+---
+
+# Project Structure
+
+```
+enterprise-product-deployment/
+│
+├── analytics-platform/              # Spring Boot Application
+├── product-deployment-pipeline/     # Jenkins Pipeline
+├── product-infrastructure/          # Terraform Infrastructure
+├── product-kubernetes/             # Kubernetes Manifests
+├── Architecture/                   # Architecture Diagram
+├── Screenshots/                    # Project Screenshots
+│
+├── Architecture_Documentation.md
+├── Backup_Verification.md
+├── Cost_Optimization_Report.md
+├── Production_Expectations.md
+├── RTO_RPO_Documentation.md
+├── Runbook.md
+├── Trusted_Advisor_Findings.md
+└── README.md
+```
+
