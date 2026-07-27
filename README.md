@@ -123,7 +123,7 @@ Prometheus + Grafana
 ↓
 Elasticsearch + Fluent Bit + Kibana
 
-📌 The complete architecture diagram is available in the `Architecture` folder.
+The complete architecture diagram is available in the `Architecture` folder.
 
 ---
 
@@ -152,3 +152,28 @@ terraform plan
 terraform apply
 terraform destroy
 ```
+
+---
+
+# Jenkins CI/CD Pipeline
+
+The CI/CD pipeline automates application delivery from source code to Kubernetes.
+
+### Pipeline Stages
+
+- Source Code Checkout
+- Maven Build
+- SonarQube Code Analysis
+- Quality Gate Validation
+- Docker Image Build
+- Docker Image Push to Amazon ECR
+- Kubernetes Deployment
+- Deployment Verification
+
+### Pipeline Features
+
+- Automated Build
+- Automated Deployment
+- Parameterized Builds
+- Continuous Integration
+- Continuous Delivery
