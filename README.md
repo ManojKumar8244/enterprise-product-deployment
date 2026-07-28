@@ -384,7 +384,7 @@ The project demonstrates Disaster Recovery planning through:
 
 # Author
 
-**Name:** Nagamulla Manoj Kumar
+**Name:** Manoj Kumar Nagamulla
 
 **Role:** DevOps Engineer
 
